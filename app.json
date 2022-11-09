@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "dance-platform",
+    "slug": "dance-platform",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "dance-platform"
+}
