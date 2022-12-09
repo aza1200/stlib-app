@@ -5,7 +5,18 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "splash":{
+      "image":"./logo.png",
+      "backgroundColor":"#554993",
+      "resizeMode":"contain"
+    },
+    "android":{
+      "adaptiveIcon":{
+        "foregroundImage":"./assets/logo.png",
+        "backgroundColor":"#554993"
+      }
+    }
   },
   "name": "dance-platform"
 }
