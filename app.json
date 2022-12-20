@@ -18,5 +18,9 @@
       }
     }
   },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9435100925433256~6006369134",
+    "ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
+  },
   "name": "dance-platform"
 }

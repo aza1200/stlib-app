@@ -1,14 +1,25 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Movies from "../screens/Movies";
-import Tv from "../screens/Tv";
-import Search from "../screens/Search";
 import Animation from "../screens/Animation";
 import { useColorScheme } from "react-native";
 import { BLACK_COLOR, DARK_GREY, LIGHT_GREY, YELLOW_COLOR } from "../colors";
-import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
+import { 
+  Ionicons,
+  MaterialCommunityIcons,
+  FontAwesome5,
+  MaterialIcons,
+  FontAwesome
+  } from "@expo/vector-icons";
+import DragAndDrop from "../screens/DragAndDrop";
+import Medias from "../screens/media/Movies";
+import DiaryNavigator from "../screens/diary/DiaryHome";
+import TopTabs from "./TopTabs";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
+const DiaryTab= createNativeStackNavigator();
 
 const Tabs = () => {
   const isDark = useColorScheme() === "light";
@@ -18,6 +29,7 @@ const Tabs = () => {
         backgroundColor: isDark ? BLACK_COLOR : "white",
       }}
       screenOptions={{
+        headerShown:false,
         unmountOnBlur:true,
         tabBarStyle: {
           backgroundColor: isDark ? BLACK_COLOR : "white",
@@ -37,32 +49,14 @@ const Tabs = () => {
         },
       }}
     >
-      <Tab.Screen
-        name="Movies"
-        component={Movies}
+      <TopTab.Screen 
+        name="Medias" 
+        component={TopTabs}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name={"film-outline"} color={color} size={size} />
+            <MaterialIcons name={"live-tv"} color={color} size={size} />
           ),
-        }}
-      />
-      <Tab.Screen
-        name="TV"
-        component={Tv}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="tv-outline" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Search"
-        component={Search}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name={"search-outline"} color={color} size={size} />
-          ),
-        }}
+        }} 
       />
       <Tab.Screen
         name="Animation"
@@ -70,6 +64,24 @@ const Tabs = () => {
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name={"animation-play"} color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="DragAndDrop"
+        component={DragAndDrop}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name={"dropbox"} color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Diary"
+        component={DiaryNavigator}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="pencil-square-o" color={color} size={size} />
           ),
         }}
       />

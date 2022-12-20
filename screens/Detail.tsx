@@ -152,7 +152,7 @@ const Detail: React.FC<DetailScreenProps> = ({
       <Data>
         <Overview>{params.overview}</Overview>
         {isLoading ? <Loader /> : null}
-        {data?.videos?.results?.map((video) => (
+        {data?.videos?.results?.map((video: any) => (
           <VideoBtn key={video.key} onPress={() => openYTLink(video.key)}>
             <Ionicons name="logo-youtube" color="white" size={24} />
             <BtnText>{video.name}</BtnText>

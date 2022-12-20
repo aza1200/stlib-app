@@ -5,19 +5,36 @@ import { QueryClient,QueryClientProvider } from "@tanstack/react-query";
 import { NavigationContainer, ThemeProvider } from "@react-navigation/native";
 import Root from "./navigation/Root";
 import { darkTheme } from "./styled";
+import Realm from "realm";
+import { DBContext } from "./screens/diary/Context";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
+const FeelingSchema = {
+  name: "Feeling",
+  properties: {
+    _id: "int",
+    emotion: "string",
+    message: "string",
+  },
+  primaryKey: "_id",
+};
+
+
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const [realm, setRealm] = useState(null);
+
   const isDark = useColorScheme() === "dark";
   useEffect(() => {
     async function prepare() {
       try {
-        // Artificially delay for two seconds to simulate a slow loading
-        // experience. Please remove this if you copy and paste the code!
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        const connection = await Realm.open({
+            path: "jhkimDB",
+            schema: [FeelingSchema],
+        });
+        setRealm(connection);
       } catch (e) {
         console.warn(e);
       } finally {
@@ -47,9 +64,11 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
-        <NavigationContainer onReady={onLayoutRootView}>
-          <Root />
-        </NavigationContainer>
+        <DBContext.Provider value={realm}>
+          <NavigationContainer onReady={onLayoutRootView}>
+            <Root />
+          </NavigationContainer>
+        </DBContext.Provider>
       </ThemeProvider>
     </QueryClientProvider>
   );

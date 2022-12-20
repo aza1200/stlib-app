@@ -4,11 +4,12 @@ import { Alert, Dimensions, FlatList } from "react-native";
 import Swiper from "react-native-web-swiper";
 import { useInfiniteQuery,useQuery, useQueryClient } from "@tanstack/react-query";
 import styled from "styled-components/native";
-import { moviesApi } from "../api";
-import HList from "../components/HList";
-import HMedia from "../components/HMedia";
-import Loader from "../components/Loader";
-import Slide from "../components/Slide";
+import { moviesApi } from "../../api";
+import HList from "../../components/HList";
+import HMedia from "../../components/HMedia";
+import Loader from "../../components/Loader";
+import Slide from "../../components/Slide";
+import TopTabs from "../../navigation/TopTabs";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -118,14 +119,3 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
 };
 
 export default Movies;
-
-
-/*{
-"pageParams": [undefined],
-"pages": [
-  {"dates": [Object], "page": 1, "results": [Array], "total_pages": 18, "total_results": 348}
-  {"dates": [Object], "page": 2, "results": [Array], "total_pages": 18, "total_results": 348}
-  {"dates": [Object], "page": 3, "results": [Array], "total_pages": 18, "total_results": 348}
-  {"dates": [Object], "page": 4, "results": [Array], "total_pages": 18, "total_results": 348}
-  ]
-}*/
